@@ -1252,6 +1252,7 @@ def sensors_temperatures():
     basenames.extend(glob.glob('/sys/class/hwmon/hwmon*/device/temp*_*'))
     basenames.extend(glob.glob(
         '/sys/devices/platform/coretemp.*/hwmon/hwmon*/temp*_*'))
+    basenames = list(map(os.path.realpath, basenames))
     basenames = sorted(set([x.split('_')[0] for x in basenames]))
 
     for base in basenames:
